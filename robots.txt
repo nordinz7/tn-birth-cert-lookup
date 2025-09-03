@@ -1,0 +1,41 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://yourusername.github.io/tn-birth-cert-lookup/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Block access to config and service worker
+Disallow: /config.js
+Disallow: /service-worker.js
+
+# Allow important files
+Allow: /index.html
+Allow: /styles.css
+Allow: /script.js
+Allow: /manifest.json
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+
+# Additional directives for search engines
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+
+# Block specific crawlers that might be resource-intensive
+User-agent: AhrefsBot
+Crawl-delay: 30
+
+User-agent: MJ12bot
+Crawl-delay: 30

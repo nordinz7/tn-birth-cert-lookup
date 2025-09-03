@@ -1,0 +1,33 @@
+/* TEAM */
+Developer: TN Birth Certificate Team
+Contact: support [at] tnbirthcert.example
+Location: Tamil Nadu, India
+
+/* THANKS */
+Tamil Nadu Government for providing birth certificate services
+CRSTN.org for the data source
+Open source community for web technologies
+
+/* SITE */
+Last update: 2025/01/15
+Language: English / Tamil
+Doctype: HTML5
+IDE: Claude Code
+Standards: HTML5, CSS3, ES6+, PWA
+Components: Responsive Design, Dark Theme, Accessibility
+Software: Git, GitHub Pages
+
+                          .              .
+                         /#\          ./#\
+                        /###\      ./###\
+                       /  ###\    /###  /\
+                      /      #\  /###   /##\
+                     /         \/###    /####\
+                    ##           ######     ###
+                   ###         ######     #### 
+                   ####      ######       ####
+                    #############           ##
+                      ######### TN          #
+                        #####              #
+                          ###
+                           #
