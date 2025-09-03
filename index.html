@@ -19,7 +19,8 @@
     <meta
       name="description"
       content="Official Tamil Nadu Birth Certificate Lookup Portal. Download your TN birth certificate instantly using your registration number. தமிழ்நாடு பிறப்புச் சான்றிதழ் தேடல் - உங்கள் பதிவு எண்ணைப் பயன்படுத்தி பிறப்புச் சான்றிதழை உடனே பதிவிறக்கம் செய்யுங்கள்."
-      <meta
+    />
+    <meta
       name="keywords"
       content="tamil nadu birth certificate, birth certificate lookup, registration number lookup, தமிழ்நாடு பிறப்புச் சான்றிதழ், online birth certificate, tn birth certificate download, birth registration tamil nadu, crstn birth certificate, tamil nadu government services, பதிவு எண் தேடல், பிறப்புச் சான்றிதழ் தேடல், ஆன்லைன் பிறப்புச் சான்றிதழ், தமிழ்நாடு அரசு சேவைகள்"
     />
@@ -45,7 +46,8 @@
     <meta
       property="og:description"
       content="Download your Tamil Nadu birth certificate instantly using your registration number. Official government portal for TN birth certificate lookup."
-      <meta
+    />
+    <meta
       property="og:image"
       content="https://yourusername.github.io/tn-birth-cert-lookup/og-image.png"
     />
@@ -150,20 +152,27 @@
   </head>
   <body>
     <div class="container">
-      <header>
-        <h1 class="title">
-          <span class="english">TN Birth Certificate</span>
-          <span class="tamil">பிறப்புச் சான்றிதழ்</span>
-        </h1>
-        <p class="subtitle">
-          <span class="english">Enter registration number</span>
-          <span class="tamil">பதிவு எண் உள்ளிடவும்</span>
-        </p>
-      </header>
+      <!-- Legal Notice Banner -->
+      <div class="legal-banner">
+        <div class="banner-content">
+          <span class="warning-icon">⚠️</span>
+          <div class="banner-text">
+            <span class="english">Unofficial educational tool. No data stored. Verify with TN authorities.</span>
+            <span class="tamil">அதிகாரமற்ற கல்வி கருவி. தரவு சேமிக்கப்படவில்லை. தமிழ்நாடு அதிகாரிகளுடன் சரிபார்க்கவும்.</span>
+          </div>
+        </div>
+      </div>
 
       <main>
         <div class="main-content">
           <div class="search-panel">
+            <div class="title-section">
+              <h1 class="title">
+                <span class="english">TN Birth Certificate</span>
+                <span class="tamil">பிறப்புச் சான்றிதழ்</span>
+              </h1>
+            </div>
+            
             <form id="certForm">
               <div class="form-group">
                 <label for="certId" class="form-label">
@@ -179,24 +188,19 @@
                   required
                 />
                 <div class="input-help">
-                  <span class="english">Format: B-YYYY:XX-XXXX-XXXXXX</span>
-                  <span class="tamil">வடிவம்: B-YYYY:XX-XXXX-XXXXXX</span>
+                  <span class="english">B-YYYY:XX-XXXX-XXXXXX</span>
                 </div>
                 <div id="error-message" class="error-message" style="display: none"></div>
               </div>
 
               <div class="form-actions">
                 <button type="submit" class="btn-primary" id="submitBtn">
-                  <span class="english">View</span>
-                  <span class="tamil">பார்</span>
+                  <span class="english">View Certificate</span>
+                  <span class="tamil">சான்றிதழ் காண்க</span>
                 </button>
-                <button type="button" class="btn-secondary" id="downloadBtn" style="display: none">
-                  <span class="english">Download</span>
-                  <span class="tamil">பதிவிறக்கம்</span>
-                </button>
-                <button type="button" class="btn-tertiary" id="newSearchBtn" style="display: none">
-                  <span class="english">New</span>
-                  <span class="tamil">புதிய</span>
+                <button type="button" class="btn-secondary" id="newSearchBtn" style="display: none">
+                  <span class="english">New Search</span>
+                  <span class="tamil">புதிய தேடல்</span>
                 </button>
               </div>
             </form>
@@ -208,54 +212,70 @@
                 <span class="tamil">ஏற்றுகிறது...</span>
               </p>
             </div>
+            
+            <div class="footer-info">
+              <div class="links">
+                <div class="data-source">
+                  <span class="english">Source: </span>
+                  <a href="https://www.crstn.org" target="_blank" rel="noopener">CRSTN.org</a>
+                </div>
+                <div class="support">
+                  <a href="https://buymeacoffee.com/nordin" target="_blank" rel="noopener">☕ Support</a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="pdf-panel" id="pdfPanel" style="display: none">
-            <div class="pdf-header">
-              <h3>
-                <span class="english">Certificate</span>
-                <span class="tamil">சான்றிதழ்</span>
-              </h3>
-            </div>
-            <div class="pdf-container">
-              <iframe id="pdfViewer" src="" frameborder="0"></iframe>
-            </div>
-          </div>
         </div>
       </main>
+    </div>
 
-      <footer>
-        <div class="footer-content">
-          <p class="disclaimer">
-            <span class="english">
-              <strong>Legal Notice:</strong> This is an unofficial educational tool for accessing publicly available Tamil Nadu birth certificates. 
-              This tool does not store, collect, or transmit personal data. All certificate data is accessed directly from official government sources. 
-              Users are advised to verify all information with official Tamil Nadu government authorities. 
-              The creator disclaims any liability for the accuracy or completeness of information accessed through this tool.
-            </span>
-            <span class="tamil">
-              <strong>சட்ட அறிவிப்பு:</strong> இது பொதுவில் கிடைக்கும் தமிழ்நாடு பிறப்பு சான்றிதழ்களை அணுகுவதற்கான அதிகாரமற்ற கல்வி கருவி. 
-              இந்த கருவி தனிப்பட்ட தரவை சேமிக்கவோ, சேகரிக்கவோ அல்லது அனுப்பவோ இல்லை. 
-              அனைத்து சான்றிதழ் தரவும் அதிகாரப்பூர்வ அரசு ஆதாரங்களிலிருந்து நேரடியாக அணுகப்படுகிறது. 
-              அனைத்து தகவல்களையும் அதிகாரப்பூர்வ தமிழ்நாடு அரசு அதிகாரிகளுடன் சரிபார்க்க பயனர்களுக்கு அறிவுறுத்தப்படுகிறது.
-            </span>
-          </p>
-          <div class="footer-links">
-            <a href="https://buymeacoffee.com/nordin" target="_blank" rel="noopener" class="support-link">
-              <span class="coffee-icon">☕</span>
-              <span class="english">Support this project</span>
-              <span class="tamil">இந்த திட்டத்தை ஆதரிக்கவும்</span>
-            </a>
-            <div class="data-source">
-              <span class="english">Data source: </span>
-              <span class="tamil">தரவு மூலம்: </span>
-              <a href="https://www.crstn.org" target="_blank" rel="noopener">CRSTN.org</a>
-            </div>
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="modal" style="display: none">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>
+            <span class="english">Birth Certificate</span>
+            <span class="tamil">பிறப்புச் சான்றிதழ்</span>
+          </h3>
+          <div class="modal-actions">
+            <button id="closeModalBtn" class="btn-close" aria-label="Close">✕</button>
           </div>
         </div>
-      </footer>
+        <div class="modal-body">
+          <iframe id="pdfModalViewer" src="" frameborder="0"></iframe>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+      // Modal close on ESC and X button
+      document.addEventListener('DOMContentLoaded', function() {
+        var modal = document.getElementById('pdfModal');
+        var closeBtn = document.getElementById('closeModalBtn');
+        var backdrop = modal ? modal.querySelector('.modal-backdrop') : null;
+        function closeModal() {
+          if (modal) {
+            modal.style.display = 'none';
+            var iframe = document.getElementById('pdfModalViewer');
+            if (iframe) iframe.src = '';
+            document.body.style.overflow = 'auto';
+          }
+        }
+        if (closeBtn) {
+          closeBtn.addEventListener('click', closeModal);
+        }
+        if (backdrop) {
+          backdrop.addEventListener('click', closeModal);
+        }
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && modal && modal.style.display !== 'none') {
+            closeModal();
+          }
+        });
+      });
+    </script>
   </body>
 </html>

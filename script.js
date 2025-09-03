@@ -53,8 +53,13 @@ class BirthCertificateLookup {
         this.downloadBtn = document.getElementById('downloadBtn');
         this.newSearchBtn = document.getElementById('newSearchBtn');
         this.loading = document.getElementById('loading');
-        this.pdfPanel = document.getElementById('pdfPanel');
-        this.pdfViewer = document.getElementById('pdfViewer');
+        
+        // Modal elements
+        this.pdfModal = document.getElementById('pdfModal');
+        this.pdfModalViewer = document.getElementById('pdfModalViewer');
+        this.downloadModalBtn = document.getElementById('downloadModalBtn');
+        this.closeModalBtn = document.getElementById('closeModalBtn');
+        this.modalBackdrop = this.pdfModal?.querySelector('.modal-backdrop');
     }
 
     attachEventListeners() {
@@ -62,6 +67,24 @@ class BirthCertificateLookup {
         this.downloadBtn.addEventListener('click', () => this.downloadPDF());
         this.newSearchBtn.addEventListener('click', () => this.resetForm());
         this.certIdInput.addEventListener('input', () => this.clearError());
+        
+        // Modal event listeners
+        if (this.closeModalBtn) {
+            this.closeModalBtn.addEventListener('click', () => this.closeModal());
+        }
+        if (this.downloadModalBtn) {
+            this.downloadModalBtn.addEventListener('click', () => this.downloadPDF());
+        }
+        if (this.modalBackdrop) {
+            this.modalBackdrop.addEventListener('click', () => this.closeModal());
+        }
+        
+        // ESC key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.pdfModal && this.pdfModal.style.display !== 'none') {
+                this.closeModal();
+            }
+        });
     }
 
     validateCertificateId(certId) {
@@ -213,8 +236,8 @@ class BirthCertificateLookup {
             if (!exists) {
                 this.hideLoading();
                 this.showError({
-                    english: 'Certificate not found. Check number and try again.',
-                    tamil: 'சான்றிதழ் இல்லை. எண்ணை சரிபார்த்து முயற்சிக்கவும்.'
+                    english: 'Certificate not found. Please check the registration number and try again.',
+                    tamil: 'சான்றிதழ் இல்லை. பதிவு எண்ணை சரிபார்த்து மீண்டும் முயற்சிக்கவும்.'
                 });
                 return;
             }
@@ -226,28 +249,43 @@ class BirthCertificateLookup {
             console.error('Error fetching PDF:', error);
             this.hideLoading();
             this.showError({
-                english: 'Error loading certificate. Try again later.',
-                tamil: 'சான்றிதழ் ஏற்றுவதில் பிழை. பின்னர் முயற்சிக்கவும்.'
+                english: 'Unable to connect to the certificate server. Please check your internet connection and try again.',
+                tamil: 'சான்றிதழ் சேவையகத்துடன் இணைக்க முடியவில்லை. உங்கள் இணைய இணைப்பை சரிபார்த்து மீண்டும் முயற்சிக்கவும்.'
             });
         }
     }
 
     displayPDF(pdfUrl) {
-        this.pdfViewer.src = pdfUrl;
-        this.pdfPanel.style.display = 'flex';
+        // Open modal with PDF
+        this.pdfModalViewer.src = pdfUrl;
+        this.pdfModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+        
+        // Show additional buttons
         this.downloadBtn.style.display = 'inline-block';
         this.newSearchBtn.style.display = 'inline-block';
         this.downloadBtn.dataset.pdfUrl = pdfUrl;
+        this.downloadModalBtn.dataset.pdfUrl = pdfUrl;
         
-        // Update button text for better UX
+        // Update button text
         this.submitBtn.innerHTML = `
-            <span class="english">View</span>
-            <span class="tamil">பார்</span>
+            <span class="english">Search Again</span>
+            <span class="tamil">மீண்டும் தேடு</span>
         `;
+        
+        // Focus trap for accessibility
+        this.closeModalBtn.focus();
+    }
+    
+    closeModal() {
+        this.pdfModal.style.display = 'none';
+        this.pdfModalViewer.src = '';
+        document.body.style.overflow = 'auto'; // Restore scroll
+        this.certIdInput.focus(); // Return focus to input
     }
 
     downloadPDF() {
-        const pdfUrl = this.downloadBtn.dataset.pdfUrl;
+        const pdfUrl = this.downloadBtn.dataset.pdfUrl || this.downloadModalBtn.dataset.pdfUrl;
         if (!pdfUrl) return;
 
         // Extract certificate registration number from URL for filename
@@ -266,15 +304,14 @@ class BirthCertificateLookup {
     resetForm() {
         this.form.reset();
         this.clearError();
-        this.pdfPanel.style.display = 'none';
+        this.closeModal();
         this.downloadBtn.style.display = 'none';
         this.newSearchBtn.style.display = 'none';
-        this.pdfViewer.src = '';
         
         // Reset submit button
         this.submitBtn.innerHTML = `
-            <span class="english">View</span>
-            <span class="tamil">பார்</span>
+            <span class="english">View Certificate</span>
+            <span class="tamil">சான்றிதழ் காண்க</span>
         `;
         
         // Focus on input
