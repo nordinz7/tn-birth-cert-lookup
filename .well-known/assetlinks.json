@@ -1,7 +1,11 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "web",
-    "site": "https://yourusername.github.io"
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "web",
+      "site": "https://nordinz7.github.io/tn-birth-cert-lookup"
+    }
   }
-}]
+]
